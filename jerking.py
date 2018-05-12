@@ -5,6 +5,8 @@ from dateutil import parser
 from dateutil import relativedelta
 import pprint
 
+__version__ = '0.69'
+
 class Jerk(object):
     def __init__(self, date, number, title, text):
         '''Date uses datetime.date objects'''

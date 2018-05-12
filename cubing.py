@@ -1,5 +1,7 @@
 import random, re
 
+__version__ = '0.69'
+
 def load_cubes(fn='timecube.txt'):
     '''Load a simple timecube.txt (quotes separated by newlines)'''
     cubes = []
