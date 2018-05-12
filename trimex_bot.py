@@ -1,8 +1,8 @@
-import discord
+import discord # version 0.16.7
 from discord.ext import commands
 import random, re
-import jerking, cubing
-import nltk
+import jerking, cubing # versions 0.69 (both.)
+import nltk # version 3.2.5
 
 description = 'A bot for boys'
 
