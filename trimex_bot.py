@@ -84,7 +84,7 @@ def buttify(message):
                 butted += ' ' + word
 
         # check if the word is alpha to guess that we need to space it
-        elif word.isalpha():
+        elif word.isalnum():
             butted += ' ' + word
 
         elif 'http' in word or 'www' in word:
