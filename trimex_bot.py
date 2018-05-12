@@ -18,7 +18,10 @@ def prefixer(self, message):
 
     Parses **<user>** !::command::'''
 
-    print('{}: {}'.format(message.author.name, message.content))
+    try:
+        print('{}: {}'.format(message.author.name, message.content))
+    except UnicodeEncodeError:
+        print('UnicodeBoye: {}'.format(message.content))
     if message.author.name.lower() == "irc":
         m = re.match(r'^\*\*<[^>]*>\*\* !', message.content)
         if m:
