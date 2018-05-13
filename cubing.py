@@ -1,5 +1,6 @@
 import random, re
 
+__doc__ = 'Loads timecube.txt and finds phrases within each quote.'
 __version__ = '0.69'
 
 def load_cubes(fn='timecube.txt'):
