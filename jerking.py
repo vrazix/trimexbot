@@ -5,7 +5,9 @@ from dateutil import parser
 from dateutil import relativedelta
 import pprint
 
+__doc__ = 'Contains logic for creating objects from the jerkcity.com/jerkcity.txt file and convenience functions like searching.'
 __version__ = '0.69'
+
 
 class Jerk(object):
     def __init__(self, date, number, title, text):
@@ -31,6 +33,7 @@ class Jerk(object):
 
     def __repr__(self):
         return 'num={num}, date={date}, title={title}, raw_text={raw_text}'.format(**self.__dict__)
+
 
 def load_jerks(fn='jerkcity_full.txt'):
     '''Load the jerkcity.com/jerkcity.txt format into a list of Jerk objects'''
@@ -61,6 +64,7 @@ def load_jerks(fn='jerkcity_full.txt'):
 
     return jerk_objs
 
+
 def find_jerk(jerk_objs, phrase):
     '''Return a list of jerk objects that contain lines matching the phrase.
 
@@ -76,6 +80,7 @@ def find_jerk(jerk_objs, phrase):
                 break
 
     return tagged_jerks, tagged_lines
+
 
 def find_hulag(jerk_objs):
     '''Find a fuckin' hulag who cares'''
@@ -94,6 +99,7 @@ def find_hulag(jerk_objs):
 
     return hulags
 
+
 def just_lines(jerk_objs):
     '''Return a list of lines from the jerk_objs'''
 
@@ -101,6 +107,7 @@ def just_lines(jerk_objs):
     for jerk in jerk_objs:
         all_lines += jerk.lines
     return all_lines
+
 
 def find_by_date(jerk_objs, date_string):
     '''Return the Jerk with the minimum distance to date_string (parsed by dateutil)'''
@@ -111,12 +118,14 @@ def find_by_date(jerk_objs, date_string):
         return 'Unable to parse date!'
     return sorted(jerk_objs, key=lambda x: abs(date - x.date))[0]
 
+
 def find_by_num(jerk_objs, num):
     '''Return the jerk_obj that has num'''
     try:
         return list(filter(lambda x: x.num == int(num), jerk_objs))[0]
     except IndexError:
         random.choice(jerk_objs)
+
 
 if __name__ == '__main__':
     jerk_objs = load_jerks()
