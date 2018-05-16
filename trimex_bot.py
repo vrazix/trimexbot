@@ -144,7 +144,12 @@ async def jerkdate(*date: str):
 
 @bot.command()
 async def comic(num: int):
-    multiline = '\n'.join(jerking.find_by_num(jerk_objs, num).raw_text)
+    if num < 0:
+        jerk = random.choice(jerk_objs)
+    else:
+        jerk = jerking.find_by_num(jerk_objs, num)
+    multiline = '{}, {}\n'.format(jerk.title, jerk.date)
+    multiline += '\n'.join(jerk.raw_text)
     await bot.say('```{}```'.format(multiline))
 
 
