@@ -132,6 +132,16 @@ async def gayjerk(*phrase: str):
 
 
 @bot.command()
+async def bonequest(*phrase: str):
+    jerks, lines = jerking.find_jerk(jerk_objs, ' '.join(phrase))
+    if not jerks:
+        await bot.say(random.choice(random.choice(jerk_objs).lines))
+    else:
+        jerk, line = random.choice(list(zip(jerks, lines)))
+        await bot.say('{} (Comic #{} [{}])'.format(line, jerk.num, len(jerks)))
+
+
+@bot.command()
 async def hulag():
     await bot.say(random.choice(list(jerking.find_hulag(jerk_objs).keys())))
 
@@ -148,7 +158,7 @@ async def comic(num: int):
         jerk = random.choice(jerk_objs)
     else:
         jerk = jerking.find_by_num(jerk_objs, num)
-    multiline = '{}, {}\n'.format(jerk.title, jerk.date)
+    multiline = 'Comic #{}: {}, {}\n'.format(jerk.num, jerk.title, jerk.date)
     multiline += '\n'.join(jerk.raw_text)
     await bot.say('```{}```'.format(multiline))
 
